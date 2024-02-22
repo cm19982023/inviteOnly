@@ -1,0 +1,6 @@
+@inviteOnly_HostAddress = http://localhost:5147
+
+GET {{inviteOnly_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
