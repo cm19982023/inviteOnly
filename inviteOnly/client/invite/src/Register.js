@@ -19,7 +19,7 @@ export default function Register({setIsLoggedIn}) {
     if (password && password !== confirmPassword) {
       alert("Passwords don't match. Do better.");
     } else {
-      const userProfile = { firstName, lastName, displayName, imageLocation, email };
+      const userProfile = { firstName, lastName, displayName, email };
       register(userProfile, password)
         .then(() => {
           setIsLoggedIn(true)
