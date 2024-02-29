@@ -18,7 +18,7 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
+        <NavbarBrand tag={RRNavLink} to="/">inviteOnly</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -31,7 +31,7 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
               </NavItem>
 
               <NavItem>
-                <NavLink tag={RRNavLink} to="/categories">Category Management</NavLink>
+                <NavLink tag={RRNavLink} to="/communities">Communities</NavLink>
               </NavItem>
               
               <NavItem>
@@ -44,9 +44,7 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
           <Nav navbar>
             {isLoggedIn &&
               <>
-              <NavItem>
-                  <NavLink tag={RRNavLink} to="/tags">Tag Management</NavLink>
-                </NavItem>
+              
                 <NavItem>
                   <a aria-current="page" className="nav-link"
                     style={{ cursor: "pointer" }} onClick={() => {
