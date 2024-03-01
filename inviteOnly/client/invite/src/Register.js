@@ -1,8 +1,7 @@
 import React, { useState} from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
-import { register } from "../Managers/UserProfileManager";
-
+import { register } from "./Managers/UserProfileManager.js";
 
 export default function Register({setIsLoggedIn}) {
   const navigate = useNavigate();

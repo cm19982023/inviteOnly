@@ -1,6 +1,11 @@
-﻿namespace inviteOnly.Repositories
+﻿using inviteOnly.Models;
+using inviteOnly.Models;
+
+namespace inviteOnly.Repositories
 {
-    internal interface IUserRepository
+    public interface IUserRepository
     {
+        void Add(UserProfile userProfile);
+        UserProfile GetByEmail(string email);
     }
 }
