@@ -18,11 +18,9 @@ namespace inviteOnly.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
+                        SELECT up.Id, up.UserName, up.Bio, up.Email,
+                        up.DateCreated                 
+                          FROM Users up
                          WHERE Email = @email";
 
                     DbUtils.AddParameter(cmd, "@email", email);
@@ -35,11 +33,10 @@ namespace inviteOnly.Repositories
                         userProfile = new UserProfile()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            UserName = DbUtils.GetString(reader, "UserName"),
+                            Bio = DbUtils.GetString(reader, "Bio"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                            DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
                             
                            
                         };
@@ -58,16 +55,14 @@ namespace inviteOnly.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirstName, LastName, DisplayName, 
-                                                                 Email, CreateDateTime)
+                    cmd.CommandText = @"INSERT INTO UserProfile (UserName, Bio, Email, DateCreated)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FirstName, @LastName, @DisplayName, 
-                                                @Email, @CreateDateTime";
-                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
-                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                                        VALUES (@UserName, @Bio,
+                                                @Email, @DateCreated";
+                    DbUtils.AddParameter(cmd, "@UserName", userProfile.UserName);
+                    DbUtils.AddParameter(cmd, "@Bio", userProfile.Bio);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
                     
 
                     userProfile.Id = (int)cmd.ExecuteScalar();

@@ -34,7 +34,7 @@ namespace TabloidFullStack.Controllers
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {
-            userProfile.CreateDateTime = DateTime.Now;
+            userProfile.DateCreated = DateTime.Now;
             _userRepository.Add(userProfile);
             return CreatedAtAction(
                 "GetByEmail",

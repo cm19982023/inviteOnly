@@ -33,7 +33,7 @@ export const register = (userObject, password) => {
   })
   .then((response) => response.json())
     .then((savedUserProfile) => {
-      localStorage.setItem("userProfile", JSON.stringify(savedUserProfile))
+      localStorage.setItem("users", JSON.stringify(savedUserProfile))
     });
 };
 

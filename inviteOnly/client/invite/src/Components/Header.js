@@ -19,7 +19,7 @@ export default function Header({isLoggedIn, setIsLoggedIn}) {
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand tag={RRNavLink} to="/">inviteOnly</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */ }
