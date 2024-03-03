@@ -32,14 +32,14 @@ namespace TabloidFullStack.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(UserProfile userProfile)
+        public IActionResult Post(users users)
         {
-            userProfile.DateCreated = DateTime.Now;
-            _userRepository.Add(userProfile);
+            users.DateCreated = DateTime.Now;
+            _userRepository.Add(users);
             return CreatedAtAction(
                 "GetByEmail",
-                new { email = userProfile.Email },
-                userProfile);
+                new { email = users.Email },
+                users);
         }
     }
 }

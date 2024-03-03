@@ -3,7 +3,7 @@
 
 namespace inviteOnly.Models
 {
-    public class UserProfile
+    public class users
     {
         public int Id { get; set; }
 

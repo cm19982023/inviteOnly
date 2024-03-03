@@ -10,7 +10,7 @@ namespace inviteOnly.Repositories
     {
         public UserRepository(IConfiguration configuration) : base(configuration) { }
 
-        public UserProfile GetByEmail(string email)
+        public users GetByEmail(string email)
         {
             using (var conn = Connection)
             {
@@ -18,56 +18,52 @@ namespace inviteOnly.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, up.UserName, up.Bio, up.Email,
-                        up.DateCreated                 
-                          FROM Users up
+                        SELECT Id, UserName, Bio, Email, DateCreated                 
+                          FROM users
                          WHERE Email = @email";
 
                     DbUtils.AddParameter(cmd, "@email", email);
 
-                    UserProfile userProfile = null;
+                    users users = null;
 
                     var reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        userProfile = new UserProfile()
+                        users = new users()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             UserName = DbUtils.GetString(reader, "UserName"),
                             Bio = DbUtils.GetString(reader, "Bio"),
                             Email = DbUtils.GetString(reader, "Email"),
                             DateCreated = DbUtils.GetDateTime(reader, "DateCreated"),
-                            
-                           
                         };
                     }
                     reader.Close();
 
-                    return userProfile;
+                    return users;
                 }
             }
         }
 
-        public void Add(UserProfile userProfile)
+        public void Add(users users)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (UserName, Bio, Email, DateCreated)
+                    cmd.CommandText = @"INSERT INTO users (UserName, Bio, Email, DateCreated)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@UserName, @Bio,
-                                                @Email, @DateCreated";
-                    DbUtils.AddParameter(cmd, "@UserName", userProfile.UserName);
-                    DbUtils.AddParameter(cmd, "@Bio", userProfile.Bio);
-                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
-                    
+                                        VALUES (@UserName, @Bio, @Email, @DateCreated)";
+                    DbUtils.AddParameter(cmd, "@UserName", users.UserName);
+                    DbUtils.AddParameter(cmd, "@Bio", users.Bio);
+                    DbUtils.AddParameter(cmd, "@Email", users.Email);
+                    DbUtils.AddParameter(cmd, "@DateCreated", users.DateCreated);
 
-                    userProfile.Id = (int)cmd.ExecuteScalar();
+                    users.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
+
     }
 }

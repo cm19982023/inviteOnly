@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using inviteOnly.Models;
 using inviteOnly.Models;
 
-namespace TabloidFullStack.Models
+namespace inviteOnly.Models
 
 {
     public class Post
@@ -22,16 +22,11 @@ namespace TabloidFullStack.Models
 
         public DateTime DateCreated { get; set; }
 
-        [DisplayName("Published")]
-        [DataType(DataType.Date)]
-        public DateTime? PublishDateTime { get; set; }
+    
 
-        public bool IsApproved { get; set; }
 
      
 
-        [DisplayName("Author")]
-        public int UserProfileId { get; set; }
-        public UserProfile? User { get; set; }
+      
     }
 }
