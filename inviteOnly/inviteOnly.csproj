@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.7.302.14" />
     <PackageReference Include="Azure.Core" Version="1.38.0" />
