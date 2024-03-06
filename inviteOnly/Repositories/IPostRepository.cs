@@ -1,6 +1,12 @@
-﻿namespace inviteOnly.Repositories
+﻿using inviteOnly.Models;
+
+namespace inviteOnly.Repositories
 {
-    internal interface IPostRepository
+    public interface IPostRepository
     {
+        void Add(Post post);
+
+        List<Post> GetAll();
+        Post GetPostById(int id);
     }
 }
