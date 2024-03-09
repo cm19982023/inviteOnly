@@ -1,30 +1,28 @@
-// Posts.js
-import React, { useState, useEffect } from 'react';
-import PostsService from './PostsServiceApi';
+import { Link } from "react-router-dom";
+import { Table } from "reactstrap";
 
-const Posts = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    // Fetch all posts from your API or service
-    PostsService.getAllPosts()
-      .then(data => setPosts(data))
-      .catch(error => console.error('Error fetching posts:', error));
-  }, []);
-
-  return (
-    <div>
-      <h2>All Posts</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <strong>{post.title}</strong>
-            <p>{post.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default Posts;
+export const Posts = ({post}) => {
+    
+    return(
+         <>
+        
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>User</th>
+                    <th>DateCreated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{post.Title}</td>
+                    <td>{post.Body}</td>
+                    <td>{post.userProfile?.UserId}</td>
+                    <td>{post.DateCreated}</td>
+                </tr>
+            </tbody>
+        
+        </>  
+    );
+}

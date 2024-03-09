@@ -2,13 +2,10 @@ import React from "react";
 
 const baseUrl = '/api/Posts';
 
-export const getAllPosts = () => {
-  return fetch(baseUrl) 
-    .then((res) => res.json())
-};
+//'https://localhost:5001/api/Posts/1
 
-export const getPostsById = (id) => {
-    return fetch(`${baseUrl}/${id}`)
+export const GetPostById = (postId) => {
+    return fetch(`${baseUrl}/GetPostById?postId=${postId}`)
     .then((res) => res.json())
 };
 
