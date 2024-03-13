@@ -10,13 +10,22 @@ namespace inviteOnly.Controllers
     {
         private readonly IPostRepository _postRepository;
 
+
+
         public PostsController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
 
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_postRepository.GetAll());
+        }
+
         [HttpGet("{postId}")]
-        public ActionResult<Post> GetPostById(int postId)
+        public ActionResult<Post> Get(int postId)
         {
             var post = _postRepository.GetPostById(postId);
 
@@ -25,9 +34,16 @@ namespace inviteOnly.Controllers
                 return NotFound();
             }
 
-            return post;
+            return Ok(post);
         }
 
-        //GetAllPosts, AddPost, UpdatePost, DeletePost as needed
+        [HttpPost]
+        public IActionResult Post(Post post)
+        {
+            _postRepository.Add(post);
+            return CreatedAtAction(nameof(Get), new { id = post.Id }, post);
+        }
+
+        //GetAllPosts, AddPost, UpdatePost, DeletePost 
     }
 }

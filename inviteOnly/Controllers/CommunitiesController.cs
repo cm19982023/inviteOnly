@@ -15,6 +15,12 @@ namespace inviteOnly.Controllers
             _communityRepository = communityRepository;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_communityRepository.GetAll());
+        }
+
         [HttpGet("{communityId}")]
         public ActionResult<Community> GetCommunityById(int communityId)
         {
@@ -28,6 +34,6 @@ namespace inviteOnly.Controllers
             return community;
         }
 
-        //GetAllCommunities, AddCommunity, UpdateCommunity, DeleteCommunity as needed
+        //GetAllCommunities, AddCommunity, UpdateCommunity, DeleteCommunity 
     }
 }

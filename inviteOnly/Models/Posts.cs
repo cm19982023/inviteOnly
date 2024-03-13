@@ -17,7 +17,7 @@ namespace inviteOnly.Models
         [Required]
         public int CommunityId { get; set; }
 
-        [DisplayName("Header Image URL")]
+        [DisplayName("Made by")]
         public string Title { get; set; }
 
         public string Body { get; set; }

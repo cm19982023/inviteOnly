@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 // import "./Posts.css"
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-import { PostsList } from "./PostsList;"
+//import { PostsList } from "./PostsList;"
 
 
 
@@ -45,7 +45,7 @@ export const PostsDetails = () => {
         <button
            onClick={() => navigate(`/Posts/${postsDetails.id}/Posts/Add`)}
            >Add Post</button>
-        <PostsList postId={id}/>
+        //PostsList postId={id}/
       </CardBody>
     </Card>
         </div>

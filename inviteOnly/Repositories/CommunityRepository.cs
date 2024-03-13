@@ -11,6 +11,45 @@ namespace inviteOnly.Repositories
     {
         public CommunityRepository(IConfiguration configuration) : base(configuration) { }
 
+        public void Add(Community community)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Community> GetAll()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT ID, Title, DateCreated
+                        FROM Communities";
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var communities = new List<Community>();
+                        while (reader.Read())
+                        {
+                            communities.Add(new Community()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Title = reader.GetString(reader.GetOrdinal("Title")),
+                                DateCreated = reader.GetDateTime(reader.GetOrdinal("DateCreated")),
+                                
+                                
+                                      
+                                
+                            });
+                        }
+                        return communities;
+                    }
+                }
+            }
+        }
+    
+
         public Community GetCommunityById(int communityId)
         {
             using (var conn = Connection)
@@ -44,6 +83,11 @@ namespace inviteOnly.Repositories
             }
         }
 
-        //GetAllCommunities, AddCommunity, UpdateCommunity, DeleteCommunity as needed
+        public void Update(Community community)
+        {
+            throw new NotImplementedException();
+        }
+
+        //GetAllCommunities, AddCommunity, UpdateCommunity, DeleteCommunity 
     }
 }

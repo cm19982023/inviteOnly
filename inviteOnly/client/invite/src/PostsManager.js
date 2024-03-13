@@ -9,6 +9,11 @@ export const GetPostById = (postId) => {
     .then((res) => res.json())
 };
 
+export const GetAllPosts = (postId) => {
+  return fetch(`${baseUrl}/GetAllPosts?postId=${postId}`)
+  .then((res) => res.json())
+};
+
 
 
 export const addPosts = (singlePost) => { 
