@@ -12,13 +12,15 @@ namespace inviteOnly.Models
         public int Id { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        public string CommunityId { get; set; }
+        public int CommunityId { get; set; }
 
-        [DisplayName("Header Image URL")]
+        [DisplayName("Made by")]
         public string Title { get; set; }
+
+        public string Body { get; set; }
 
         public DateTime DateCreated { get; set; }
 

@@ -23,8 +23,11 @@ export const logout = () => {
       localStorage.clear()
 };
 
+//https://localhost:5001/api/UserProfile
+
+
 export const register = (userObject, password) => {
-  return  fetch(`${apiUrl}/api/userprofile`, {
+  return  fetch(`${apiUrl}/api/UserProfile`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
